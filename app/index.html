@@ -15,6 +15,57 @@
     <!-- endbuild -->
   </head>
   <body ng-app="blocGoalsAppApp">
+    <script>
+      function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        if (response.status === 'connected') {
+          console.log(response.authResponse.accessToken);
+          testAPI();
+        } else if (response.status === 'not_authorized') {
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into this app.';
+        } else {
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into Facebook.';
+        }
+      }
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '876097149144034',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.4'
+        });
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      };    
+
+      // Load the SDK asynchronously
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      // Here we run a very simple test of the Graph API after login is
+      // successful.  See statusChangeCallback() for when this call is made.
+      function testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          console.log(JSON.stringify(response));
+        });
+      }
+    </script>
+
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -32,7 +83,7 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">blocGoalsApp</a>
+            <a class="navbar-brand" href="#/">Bloc Goals</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -40,7 +91,9 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-right">
+              <li><fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="large" auto-logout-link="true"></fb:login-button></li>
             </ul>
           </div>
         </div>
@@ -48,12 +101,13 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+      <div id="status"></div>
+      <div ng-view=""></div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p>&copy; 2015 Courtney Mitchell</p>
       </div>
     </div>
 
