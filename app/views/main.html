@@ -1,6 +1,22 @@
-<div class="row marketing">
-  <div ng-repeat="goal in goals">
-    {{goal.title}}
-    <div class="fb-like" data-width="450" data-show-faces="true"></div>
+<div class="collection-container container">
+  <div class="row">
+    <div class="collection-goal-container col-md-3" ng-repeat="goal in goals">
+      <div ng-mouseenter="hideOverlay = false" ng-mouseleave="hideOverlay = true" class="collection-goal-image-container">
+        <img ng-src="{{ goal.image_url }}">
+        <div class="collection-goal-image-overlay" ng-hide="hideOverlay">
+          <div class="collection-overlay-content">
+            <a class="collection-overlay-button" ng-click="">
+              View Details
+            </a>
+            &nbsp;
+          </div>
+        </div>
+      </div>
+      <div class="collection-goal-info caption">
+        <p><a class="goal-name" ui-sref="goal">{{goal.title}}</a><br/>
+           <a ui-sref="goal">{{goal.category}}</a>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
