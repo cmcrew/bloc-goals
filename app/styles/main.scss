@@ -2,6 +2,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+$dark-blue: #162955;
+$light-blue: #4F628E;
+$light-grey: #ddd;
 
 .browsehappy {
   margin: 0.2em 0;
@@ -13,6 +16,66 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 body {
   padding: 0;
   background: #e9e9e9;
+  .container {
+    .collection-goal-container {
+      margin-bottom: 20px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 0 3px 2px $light-grey;
+      .collection-goal-info {
+        padding: 15px;
+        a {
+          font-size: 16px;
+          color: #333;
+          text-transform: capitalize;
+          font-weight: 600;
+          &:hover {cursor: pointer;}
+        }
+        .goal-category {
+          font-size: 12px;
+          color: #999;
+          font-weight: 200;
+        }
+      }
+    }
+    .collection-goal-image-container {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+      }
+      .collection-goal-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255,255,255,0.4);
+        z-index: 10;
+        &:hover {
+          cursor: pointer;
+        }
+        .collection-overlay-content {
+          position: absolute;
+          bottom: 40%;
+          width: 100%;
+          text-align: center;
+          a {
+            color: white;
+            font-size: 24px;
+            &:hover {
+              text-decoration: none;
+              color: $dark-blue;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -62,20 +125,18 @@ body {
   margin: 30px 0;
 }
 
-
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    .collection-goal-image-container {
-      width: 100%;
-      height: 250px;
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 6px;
-      }
-    }
+    // .collection-goal-image-container {
+    //   width: 100%;
+    //   height: 250px;
+    //   img {
+    //     width: 100%;
+    //     height: 100%;
+    //     border-radius: 6px;
+    //   }
+    // }
   }
 
   /* Remove the padding we set earlier */
