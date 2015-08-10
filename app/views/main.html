@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-3" ng-repeat="goal in goals">
       <div class="collection-goal-container">
-        <div ng-mouseenter="hideOverlay = false" ng-mouseleave="hideOverlay = true" class="collection-goal-image-container">
+        <div class="collection-goal-image-container" ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false">
           <img ng-src="{{ goal.image_url }}">
-          <div class="collection-goal-image-overlay" ng-hide="hideOverlay">
+          <div class="collection-goal-image-overlay" ng-show="showOverlay">
             <div class="collection-overlay-content">
               <a class="collection-overlay-button" ng-click="">
                 View Details
@@ -14,8 +14,8 @@
           </div>
         </div>
         <div class="collection-goal-info caption">
-          <p><a class="goal-name" ui-sref="goal">{{goal.title}}</a><br/>
-             <a class="goal-category" ui-sref="goal">{{goal.category}}</a>
+          <p><a class="goal-name" href="#goal/{{goal.id}}">{{goal.title}}</a><br/>
+             <a class="goal-category" href="#goal/{{goal.id}}">{{goal.category}}</a>
           </p>
         </div>
       </div>
@@ -24,9 +24,9 @@
   <div class="row">
     <div class="col-md-3" ng-repeat="goal in goals">
       <div class="collection-goal-container">
-        <div ng-mouseenter="hideOverlay = false" ng-mouseleave="hideOverlay = true" class="collection-goal-image-container">
+        <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false" class="collection-goal-image-container">
           <img ng-src="{{ goal.image_url }}">
-          <div class="collection-goal-image-overlay" ng-hide="hideOverlay">
+          <div class="collection-goal-image-overlay" ng-show="showOverlay">
             <div class="collection-overlay-content">
               <a class="collection-overlay-button" ng-click="">
                 View Details
@@ -36,8 +36,8 @@
           </div>
         </div>
         <div class="collection-goal-info caption">
-          <p><a class="goal-name" ui-sref="goal">{{goal.title}}</a><br/>
-             <a class="goal-category" ui-sref="goal">{{goal.category}}</a>
+          <p><a class="goal-name" href="#goal/{{goal.id}}">{{goal.title}}</a><br/>
+             <a class="goal-category" href="#goal/{{goal.id}}">{{goal.category}}</a>
           </p>
         </div>
       </div>
@@ -46,9 +46,9 @@
   <div class="row">
     <div class="col-md-3" ng-repeat="goal in goals">
       <div class="collection-goal-container">
-        <div ng-mouseenter="hideOverlay = false" ng-mouseleave="hideOverlay = true" class="collection-goal-image-container">
+        <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false" class="collection-goal-image-container">
           <img ng-src="{{ goal.image_url }}">
-          <div class="collection-goal-image-overlay" ng-hide="hideOverlay">
+          <div class="collection-goal-image-overlay" ng-show="showOverlay">
             <div class="collection-overlay-content">
               <a class="collection-overlay-button" ng-click="">
                 View Details
@@ -58,8 +58,8 @@
           </div>
         </div>
         <div class="collection-goal-info caption">
-          <p><a class="goal-name" ui-sref="goal">{{goal.title}}</a><br/>
-             <a class="goal-category" ui-sref="goal">{{goal.category}}</a>
+          <p><a class="goal-name" href="#goal/{{goal.id}}">{{goal.title}}</a><br/>
+             <a class="goal-category" href="#goal/{{goal.id}}">{{goal.category}}</a>
           </p>
         </div>
       </div>
