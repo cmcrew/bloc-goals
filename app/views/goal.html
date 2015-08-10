@@ -1,13 +1,12 @@
-<div class='goal-container container'>
+<div class='goal-container col-md-10 col-md-offset-1'>
   <div class='goal-header-container row'>
-    <div class="col-md-3">
-      <img ng-src="{{goal.image_url}}" />
-    </div>
-    <div class='goal-header-information col-md-8 col-md-push-1'>
-    Goal Id: {{goal.id}}
+    <div class='goal-header-information col-md-8 col-md-offset-2'>
       <h3 class="goal-title">{{goal.title}}</h3>
-      <h4 class="goal-category">{{goal.category}}</h4>
-      <h5 class="goal-due-date">Deadline: {{goal.due_date}}</h5>
+      <div class="img-container">
+        <img ng-src="{{goal.image_url}}" />
+      </div>
+      <h4 class="goal-category">Category: {{goal.category}}</h4>
+      <h5 class="goal-due-date">Deadline: {{goal.due_date | date:'longDate'}}</h5>
     </div>
   </div>
 </div>

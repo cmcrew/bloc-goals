@@ -8,8 +8,7 @@
  *
  * Main module of the application.
  */
-angular
-  .module('blocGoalsAppApp', [
+angular.module('blocGoalsAppApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
