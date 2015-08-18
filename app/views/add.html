@@ -1,0 +1,56 @@
+<div class="modal-dialog modal-wide goal-edit-form">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h2 class="modal-title" id="myModalLabel">Add a goal</h2>
+    </div>
+    <div class="modal-body">
+      <form enctype="multipart/form-data" action="/add/" method="post" accept-charset="utf-8" id="goaladd">
+        <div class="fieldWrapper fieldTitle">
+          <h4>Title</h4>
+          <input type="text" placeholder="Ex: Run a Marathon" class="form-control" id="goal_name" name="goal_name">
+        </div>
+        <div class="fieldWrapper">
+          <h4>Category</h4>
+            <input type="text" class="form-control" placeholder="Ex: Health + Fitness" name="goal_category" id="goal_category">
+        </div>
+        <div class="fieldWrapper">
+          <h4>Your Name</h4>
+            <input type="text" class="form-control" placeholder="Courtney" name="goal_user_name" id="goal_user_name">
+        </div>
+        <div class="fieldWrapper">
+          <h4>Due Date</h4>
+          <input id="id_due_date" type="text" placeholder="Goal without target date is a dream" class="form-control hasDatepicker" name="due_date">
+        </div>
+        <div class="fieldWrapper">
+          <h4>Image</h4>
+          <div id="fileupload"></div>
+            <div class="fileupload-buttonbar">
+              <span id="dropzone" class="btn btn-default fileinput-button">
+              <i class="icon-plus icon-white"></i>
+              <span>Drop files here or click here to select files</span>
+              <input type="file" name="files[]" multiple="">
+              </span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <hr>
+        <div class="fieldWrapper">
+          <h4>Steps</h4>
+          <p>Enter at least one step you must take in order to reach your goal.</p>
+          <h4>Title</h4>
+          <input type="text" class="form-control" placeholder="Run 1/2 marathon" id="step_1" name="step_1">
+          <h4>Due Date</h4>
+          <input type="text" class="form-control hasDatepicker" placeholder="This needs a due date too" id="step_1_due_date" name="step_1_due_date">
+        </div>
+        <hr>
+        <div>
+          <a role="button" class="">+ Another Step</a>
+        </div>
+        <p class="text-center">
+          <input id="form-submit" class="btn big" type="submit" value="Save Goal">
+        </p>
+      </form>
+    </div>
+  </div><!-- /.modal-content -->
+</div>

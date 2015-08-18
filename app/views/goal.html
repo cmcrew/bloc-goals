@@ -1,12 +1,33 @@
-<div class='goal-container col-md-10 col-md-offset-1'>
-  <div class='goal-header-container row'>
-    <div class='goal-header-information col-md-8 col-md-offset-2'>
-      <h3 class="goal-title">{{goal.title}}</h3>
-      <div class="img-container">
-        <img ng-src="{{goal.image_url}}" />
+<div class='goal-container'>
+  <div class="container">
+    <div class='goal-information col-md-8 col-md-offset-2'>
+      <div class="goal-header">
+        <h1 class="goal-title">{{goal.title}} <span class="close">X</span></h1>
       </div>
-      <h4 class="goal-category">Category: {{goal.category}}</h4>
-      <h5 class="goal-due-date">Deadline: {{goal.due_date | date:'longDate'}}</h5>
+      <div class="goal-body">
+        <div class="img-container">
+          <img ng-src="{{goal.image_url}}" />
+        </div>
+        <p class="goal-due-date">Due: {{goal.due_date | date:'longDate'}}</p>
+        <p><span class="goal-user">{{goal.user_name || "Courtney"}}</span> • <span class="goal-category">{{goal.category}}</span></p>
+        <table>
+          <thead>
+            <tr>
+              <th>Steps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Step copy here yada yada yada ya.</td>
+              <td><span>Due:</span><br/>08/11/2015</td>
+            </tr>
+            <tr>
+              <td>Step copy here yada yada yada ya.</td>
+              <td><span>Due:</span><br/>09/16/2016</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
