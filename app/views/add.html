@@ -21,8 +21,14 @@
         </div>
         <div>
           <label for="due_date">Due Date</label>
-          <input type="text" ng-model="newGoal.due_date" placeholder="August 1, 2016" class="form-control hasDatepicker" required>
+          <p class="input-group">
+            <input type="text" class="form-control" datepicker-popup ng-model="newGoal.due_date" is-open="status.opened" min-date="minDate" max-date="'2070-12-31'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
         </div>
+
 <!--         <div>
           <h4>Image</h4>
           <div id="fileupload"></div>
@@ -41,9 +47,14 @@
           <p>Enter at least one step you must take in order to reach your goal.</p>
           <div ng-repeat="step in newGoal.steps">
             <label for="choice_name">Title</label>
-            <input type="text" class="form-control" placeholder="Ex: Run a Half Marathon" required>
+            <input type="text" ng-model="step.name" class="form-control" placeholder="Ex: Run a Half Marathon" required>
             <label for="choice_due_date">Due Date</label>
-            <input type="text" class="form-control hasDatepicker" placeholder="January 1, 2016" required>
+         <!--    <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup ng-model="step.due_date" is-open="status.opened" min-date="minDate" max-date="'2070-12-31'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p> -->
           </div>
         </div>
         <hr>

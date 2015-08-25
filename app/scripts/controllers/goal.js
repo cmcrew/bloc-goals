@@ -10,7 +10,6 @@
 angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restangular, $routeParams) {
   window.restangular = Restangular;
   window.scope = $scope;
-  $scope.message = 'This is a Goal Detail View screen';
 
   Restangular.setBaseUrl('http://127.0.0.1:3000');
   $scope.goal_id = $routeParams.goal_id;
@@ -22,16 +21,45 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
 
   var baseGoals = Restangular.all('goals.json');
   $scope.newGoal = {};
-  $scope.newGoal.steps = [{id: 'step1'}];
+  $scope.newGoal.steps = [{}];
+
+  $scope.today = function() {
+    $scope.newGoal.due_date = new Date();
+  };
+  $scope.today();
+
+
+  $scope.clear = function () {
+    $scope.newGoal.due_date = null;
+  };
+
+  $scope.toggleMin = function() {
+    $scope.minDate = $scope.minDate ? null : new Date();
+  };
+  $scope.toggleMin();
+
+  $scope.open = function() {
+    $scope.status.opened = true;
+  };
+
+  $scope.status = {
+    opened: false
+  };
+
+  $scope.dateOptions = {
+    formatYear: 'yy',
+    startingDay: 1
+  };
 
   $scope.addAnotherStep = function() {
-    var newStepNo = $scope.newGoal.steps.length+1;
-    $scope.newGoal.steps.push({'id':'step'+newStepNo});
+    // var newStepNo = $scope.newGoal.steps.length+1;
+    $scope.newGoal.steps.push({});
   };
 
   $scope.addGoal = function() {
     baseGoals.post($scope.newGoal);
     $scope.newGoal = {};
+    $scope.newGoal.steps = [{}];
   };
 
 });
