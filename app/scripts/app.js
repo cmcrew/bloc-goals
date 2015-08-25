@@ -29,12 +29,12 @@ angular.module('blocGoalsAppApp', [
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/add', {
+      .when('/goals/add', {
         templateUrl: 'views/add.html',
-        controller: 'AddCtrl',
-        controllerAs: 'add'
+        controller: 'GoalCtrl',
+        controllerAs: 'goal'
       })
-      .when('/goal/:goal_id', {
+      .when('/goals/:goal_id', {
         templateUrl: 'views/goal.html',
         controller: 'GoalCtrl',
         controllerAs: 'goal'

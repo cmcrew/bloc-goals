@@ -16,14 +16,10 @@
               <th>Steps</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody ng-repeat="step in steps">
             <tr>
-              <td>Step copy here yada yada yada ya.</td>
-              <td><span>Due:</span><br/>08/11/2015</td>
-            </tr>
-            <tr>
-              <td>Step copy here yada yada yada ya.</td>
-              <td><span>Due:</span><br/>09/16/2016</td>
+              <td>{{step.name}}</td>
+              <td><span>Due:</span><br/>{{step.due_date | date:'shortDate'}}</td>
             </tr>
           </tbody>
         </table>

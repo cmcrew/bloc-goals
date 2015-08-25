@@ -2,27 +2,28 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h2 class="modal-title" id="myModalLabel">Add a goal</h2>
+      <h2 class="modal-title">Add a goal</h2>
     </div>
     <div class="modal-body">
-      <form enctype="multipart/form-data" action="/add/" method="post" accept-charset="utf-8" id="goaladd">
-        <div class="fieldWrapper fieldTitle">
-          <h4>Title</h4>
-          <input type="text" placeholder="Ex: Run a Marathon" class="form-control" id="goal_name" name="goal_name">
+      <form ng-submit="addGoal()" id="goaladd">
+        <div>
+          <label for="title">Title</label>
+          <input type="text" ng-model="newGoal.title" placeholder="Ex: Run a Marathon" class="form-control" required>
         </div>
-        <div class="fieldWrapper">
-          <h4>Category</h4>
-            <input type="text" class="form-control" placeholder="Ex: Health + Fitness" name="goal_category" id="goal_category">
+        <div>
+          <label for="category">Category</label>
+          <select name="category" ng-model="newGoal.category" required class="form-control">
+            <option value="">Select a Category</option>
+            <option value="personal">Personal</option>
+            <option value="health_fitness">Health and Fitness</option>
+            <option value="career">Career</option>
+          </select>
         </div>
-        <div class="fieldWrapper">
-          <h4>Your Name</h4>
-            <input type="text" class="form-control" placeholder="Courtney" name="goal_user_name" id="goal_user_name">
+        <div>
+          <label for="due_date">Due Date</label>
+          <input type="text" ng-model="newGoal.due_date" placeholder="August 1, 2016" class="form-control hasDatepicker" required>
         </div>
-        <div class="fieldWrapper">
-          <h4>Due Date</h4>
-          <input id="id_due_date" type="text" placeholder="Goal without target date is a dream" class="form-control hasDatepicker" name="due_date">
-        </div>
-        <div class="fieldWrapper">
+<!--         <div>
           <h4>Image</h4>
           <div id="fileupload"></div>
             <div class="fileupload-buttonbar">
@@ -33,24 +34,26 @@
               </span>
             </div>
             <div class="clear"></div>
-        </div>
+        </div> -->
         <hr>
-        <div class="fieldWrapper">
-          <h4>Steps</h4>
+        <div>
+          <label for="step">Steps</label>
           <p>Enter at least one step you must take in order to reach your goal.</p>
-          <h4>Title</h4>
-          <input type="text" class="form-control" placeholder="Run 1/2 marathon" id="step_1" name="step_1">
-          <h4>Due Date</h4>
-          <input type="text" class="form-control hasDatepicker" placeholder="This needs a due date too" id="step_1_due_date" name="step_1_due_date">
+          <div ng-repeat="step in newGoal.steps">
+            <label for="choice_name">Title</label>
+            <input type="text" class="form-control" placeholder="Ex: Run a Half Marathon" required>
+            <label for="choice_due_date">Due Date</label>
+            <input type="text" class="form-control hasDatepicker" placeholder="January 1, 2016" required>
+          </div>
         </div>
         <hr>
         <div>
-          <a role="button" class="">+ Another Step</a>
+          <a role="button" class="" ng-click="addAnotherStep()">+ Another Step</a>
         </div>
         <p class="text-center">
           <input id="form-submit" class="btn big" type="submit" value="Save Goal">
         </p>
       </form>
     </div>
-  </div><!-- /.modal-content -->
+  </div>
 </div>

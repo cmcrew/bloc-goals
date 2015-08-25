@@ -6,51 +6,13 @@
           <img ng-src="{{ goal.image_url }}">
           <div class="collection-goal-image-overlay" ng-show="showOverlay">
             <div class="collection-overlay-content">
-              <a class="collection-overlay-button" href="#goal/{{goal.id}}">View Details</a>
+              <a class="collection-overlay-button" href="#goals/{{goal.id}}">View Details</a>
             </div>
           </div>
         </div>
         <div class="collection-goal-info caption">
-          <p><a class="goal-name" href="#goal/{{goal.id}}">{{goal.title}}</a><br/>
-             <a class="goal-category" href="#goal/{{goal.id}}">{{goal.category}}</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3" ng-repeat="goal in goals">
-      <div class="collection-goal-container">
-        <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false" class="collection-goal-image-container">
-          <img ng-src="{{ goal.image_url }}">
-          <div class="collection-goal-image-overlay" ng-show="showOverlay">
-            <div class="collection-overlay-content">
-              <a class="collection-overlay-button" href="#goal/{{goal.id}}">View Details</a>
-            </div>
-          </div>
-        </div>
-        <div class="collection-goal-info caption">
-          <p><a class="goal-name" href="#goal/{{goal.id}}">{{goal.title}}</a><br/>
-             <a class="goal-category" href="#goal/{{goal.id}}">{{goal.category}}</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3" ng-repeat="goal in goals">
-      <div class="collection-goal-container">
-        <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false" class="collection-goal-image-container">
-          <img ng-src="{{ goal.image_url }}">
-          <div class="collection-goal-image-overlay" ng-show="showOverlay">
-            <div class="collection-overlay-content">
-              <a class="collection-overlay-button" href="#goal/{{goal.id}}">View Details</a>
-            </div>
-          </div>
-        </div>
-        <div class="collection-goal-info caption">
-          <p><a class="goal-name" href="#goal/{{goal.id}}">{{goal.title}}</a><br/>
-             <a class="goal-category" href="#goal/{{goal.id}}">{{goal.category}}</a>
+          <p><a class="goal-name" href="#goals/{{goal.id}}">{{goal.title}}</a><br/>
+             <a class="goal-category" href="#goals/{{goal.id}}">{{goal.category}}</a>
           </p>
         </div>
       </div>

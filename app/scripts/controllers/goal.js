@@ -17,5 +17,21 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
   
   $scope.goal = Restangular.one("goals", $scope.goal_id).get().then(function(goal){
     $scope.goal = goal;
+    $scope.steps = goal.steps;
   });
+
+  var baseGoals = Restangular.all('goals.json');
+  $scope.newGoal = {};
+  $scope.newGoal.steps = [{id: 'step1'}];
+
+  $scope.addAnotherStep = function() {
+    var newStepNo = $scope.newGoal.steps.length+1;
+    $scope.newGoal.steps.push({'id':'step'+newStepNo});
+  };
+
+  $scope.addGoal = function() {
+    baseGoals.post($scope.newGoal);
+    $scope.newGoal = {};
+  };
+
 });
