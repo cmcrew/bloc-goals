@@ -22,9 +22,9 @@
         <div>
           <label for="due_date">Due Date</label>
           <p class="input-group">
-            <input type="text" class="form-control" datepicker-popup ng-model="newGoal.due_date" is-open="status.opened" min-date="minDate" max-date="'2070-12-31'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            <input type="text" class="form-control" datepicker-popup="{{calendar.dateFormat}}" ng-model="newGoal.due_date" is-open="calendar.opened[ngdd]" min-date="minDate" max-date="'2070-12-31'" datepicker-options="calendar.dateOptions" ng-required="true" close-text="Close" />
             <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+              <button type="button" class="btn btn-default" ng-click="calendar.open($event, ngdd)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </p>
         </div>
@@ -45,16 +45,22 @@
         <div>
           <label for="step">Steps</label>
           <p>Enter at least one step you must take in order to reach your goal.</p>
-          <div ng-repeat="step in newGoal.steps">
-            <label for="choice_name">Title</label>
-            <input type="text" ng-model="step.name" class="form-control" placeholder="Ex: Run a Half Marathon" required>
-            <label for="choice_due_date">Due Date</label>
-         <!--    <p class="input-group">
-              <input type="text" class="form-control" datepicker-popup ng-model="step.due_date" is-open="status.opened" min-date="minDate" max-date="'2070-12-31'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </p> -->
+          <div ng-repeat="step in newGoal.steps" class="form-inline">
+            <div class="form-group">
+              <div class="input-group col-xs-8">
+                <label for="choice_name">Title</label>
+                <input type="text" ng-model="step.name" class="form-control" placeholder="Ex: Run a Half Marathon" required>
+              </div>
+              <div class="col-xs-4">
+                <label for="choice_due_date">Due Date</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="{{calendar.dateFormatShort}}" ng-model="step.due_date" is-open="calendar.opened[step]" min-date="minDate" max-date="'2070-12-31'" datepicker-options="calendar.dateOptions" ng-required="true" close-text="Close" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="calendar.open($event, step)"><i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <hr>

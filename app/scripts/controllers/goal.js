@@ -25,9 +25,9 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
 
   $scope.today = function() {
     $scope.newGoal.due_date = new Date();
+    $scope.newGoal.steps[0].due_date = new Date();
   };
   $scope.today();
-
 
   $scope.clear = function () {
     $scope.newGoal.due_date = null;
@@ -38,22 +38,25 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
   };
   $scope.toggleMin();
 
-  $scope.open = function() {
-    $scope.status.opened = true;
-  };
-
-  $scope.status = {
-    opened: false
-  };
-
-  $scope.dateOptions = {
-    formatYear: 'yy',
-    startingDay: 1
+  $scope.calendar = {
+    opened: {},
+    dateFormat: 'dd-MMMM-yyyy',
+    dateFormatShort: 'dd-MM-yy',
+    dateOptions: {
+      startingDay: 1
+    },
+    open: function($event, datepicker) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.calendar.opened[datepicker] = true;
+    } 
   };
 
   $scope.addAnotherStep = function() {
-    // var newStepNo = $scope.newGoal.steps.length+1;
+    var newStepNo = $scope.newGoal.steps.length;
+    console.log(newStepNo);
     $scope.newGoal.steps.push({});
+    $scope.newGoal.steps[newStepNo].due_date = new Date();
   };
 
   $scope.addGoal = function() {
