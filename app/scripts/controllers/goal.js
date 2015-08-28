@@ -45,10 +45,13 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
     dateOptions: {
       startingDay: 1
     },
-    open: function($event, datepicker) {
+    open: function($event, step) {
       $event.preventDefault();
       $event.stopPropagation();
-      $scope.calendar.opened[datepicker] = true;
+      Object.keys($scope.calendar.opened).forEach(function(s){
+        $scope.calendar.opened[s] = false;
+      })
+      $scope.calendar.opened[step.$$hashKey] = true;
     } 
   };
 
