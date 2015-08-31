@@ -38,7 +38,24 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
   };
   $scope.toggleMin();
 
-  $scope.calendar = {
+  $scope.mainDatePicker = {
+    opened: {},
+    dateFormat: 'dd-MMMM-yyyy',
+    dateFormatShort: 'dd-MM-yy',
+    dateOptions: {
+      startingDay: 1
+    },
+    open: function($event, dp) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      Object.keys($scope.mainDatePicker.opened).forEach(function(s){
+        $scope.mainDatePicker.opened[s] = false;
+      });
+      $scope.mainDatePicker.opened[dp] = true;
+    } 
+  };
+
+  $scope.stepDatePicker = {
     opened: {},
     dateFormat: 'dd-MMMM-yyyy',
     dateFormatShort: 'dd-MM-yy',
@@ -48,16 +65,15 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
     open: function($event, step) {
       $event.preventDefault();
       $event.stopPropagation();
-      Object.keys($scope.calendar.opened).forEach(function(s){
-        $scope.calendar.opened[s] = false;
-      })
-      $scope.calendar.opened[step.$$hashKey] = true;
+      Object.keys($scope.stepDatePicker.opened).forEach(function(s){
+        $scope.stepDatePicker.opened[s] = false;
+      });
+      $scope.stepDatePicker.opened[step.$$hashKey] = true;
     } 
   };
 
   $scope.addAnotherStep = function() {
     var newStepNo = $scope.newGoal.steps.length;
-    console.log(newStepNo);
     $scope.newGoal.steps.push({});
     $scope.newGoal.steps[newStepNo].due_date = new Date();
   };
