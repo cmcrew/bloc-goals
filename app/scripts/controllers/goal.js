@@ -7,7 +7,7 @@
  * # GoalCtrl
  * Controller of the blocGoalsAppApp
  */
-angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restangular, $routeParams) {
+angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restangular, $routeParams, Upload) {
   window.restangular = Restangular;
   window.scope = $scope;
 
@@ -78,7 +78,25 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
     $scope.newGoal.steps[newStepNo].due_date = new Date();
   };
 
-  $scope.addGoal = function() {
+  $scope.addGoal = function(file) {
+    file.upload = Upload.upload({
+      url: 'https://blocgoals.s3.amazonaws.com/',
+      method: 'POST',
+      headers: {
+        'my-header': 'my-header-value'
+      },
+      fields : {
+        key: file.name, // the key to store the file on S3, could be file name or customized
+        AWSAccessKeyId: <YOUR AWS AccessKey Id>,
+        acl: 'private', // sets the access to the uploaded file in the bucket: private or public
+        policy: $scope.policy, // base64-encoded json policy (see article below)
+        signature: $scope.signature, // base64-encoded signature based on policy string (see article below)
+        "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
+        filename: file.name // this is needed for Flash polyfill IE8-9
+      },
+      file: file,
+      fileFormDataName: 'file'
+    });
     baseGoals.post($scope.newGoal);
     $scope.newGoal = {};
     $scope.newGoal.steps = [{}];

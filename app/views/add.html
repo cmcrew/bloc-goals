@@ -31,7 +31,12 @@
         <div>
           <label>Image</label>
           <div class="form-control">
-            <input type="file" name="files[]" multiple="">
+            <input type="file" ngf-select ng-model="file" name="file" ngf-pattern="'image/*" accept="image/*" ngf-max-size="2MB" required >
+            <!-- <i ng-show="myForm.file.$error.required">*required</i><br>
+            <i ng-show="myForm.file.$error.maxSize">File too large 
+                {{picFile.size / 1000000|number:1}}MB: max {{picFile.$errorParam}}</i> -->
+            <br/>
+            Image thumbnail: <img ngf-src="file || '/thumb.jpg'">
           </div>
         </div>
         <hr>

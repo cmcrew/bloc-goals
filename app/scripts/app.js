@@ -16,6 +16,7 @@ angular.module('blocGoalsAppApp', [
     'ngSanitize',
     'ngTouch',
     'restangular',
+    'ngFileUpload',
     'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
