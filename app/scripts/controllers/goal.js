@@ -78,24 +78,27 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
     $scope.newGoal.steps[newStepNo].due_date = new Date();
   };
 
-  $scope.addGoal = function(file) {
-    file.upload = Upload.upload({
-      url: 'https://blocgoals.s3.amazonaws.com/',
+  $scope.policy = {
+
+  };
+
+  $scope.addGoal = function() {
+    Upload.upload({
+      url: 'https://s3-us-west-1.amazonaws.com/blocgoals',//'https://blocgoals.s3.amazonaws.com/',
       method: 'POST',
-      headers: {
-        'my-header': 'my-header-value'
-      },
       fields : {
-        key: file.name, // the key to store the file on S3, could be file name or customized
-        AWSAccessKeyId: <YOUR AWS AccessKey Id>,
-        acl: 'private', // sets the access to the uploaded file in the bucket: private or public
+        key: $scope.file.name, 
+        AWSAccessKeyId: 'AKIAIPYNFIL4MZZBPPWQ',
+        acl: 'public-read', // sets the access to the uploaded file in the bucket: private or public
         policy: $scope.policy, // base64-encoded json policy (see article below)
-        signature: $scope.signature, // base64-encoded signature based on policy string (see article below)
-        "Content-Type": file.type != '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
-        filename: file.name // this is needed for Flash polyfill IE8-9
+        signature: '', //$scope.signature, // base64-encoded signature based on policy string (see article below)
+        "Content-Type": $scope.file.type !== '' ? $scope.file.type : 'application/octet-stream', 
+        filename: $scope.file.name
       },
-      file: file,
+      file: $scope.file,
       fileFormDataName: 'file'
+    }).then(function(data, status, headers, config){
+      debugger;
     });
     baseGoals.post($scope.newGoal);
     $scope.newGoal = {};

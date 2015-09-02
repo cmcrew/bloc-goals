@@ -16,6 +16,14 @@ $light-grey: #ddd;
   padding: 0.2em 0;
 }
 
+.thumb {
+  width: 24px;
+  height: 24px;
+  float: none;
+  position: relative;
+  top: 7px;
+}
+
 body {
   padding: 0;
   background: #e9e9e9;

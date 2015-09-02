@@ -36,7 +36,7 @@
             <i ng-show="myForm.file.$error.maxSize">File too large 
                 {{picFile.size / 1000000|number:1}}MB: max {{picFile.$errorParam}}</i> -->
             <br/>
-            Image thumbnail: <img ngf-src="file || '/thumb.jpg'">
+            Image thumbnail: <img ngf-src="file" class="thumb">
           </div>
         </div>
         <hr>
