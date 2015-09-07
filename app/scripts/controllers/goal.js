@@ -82,24 +82,29 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
 
   };
 
+  $scope.policy = 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImFuZ3VsYXItZmlsZS11cGxvYWQifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICIiXSwKICAgIHsiYWNsIjogInByaXZhdGUifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGZpbGVuYW1lIiwgIiJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDUyNDI4ODAwMF0KICBdCn0=';
+
   $scope.addGoal = function() {
     Upload.upload({
-      url: 'https://s3-us-west-1.amazonaws.com/blocgoals',//'https://blocgoals.s3.amazonaws.com/',
+      url: 'https://s3.amazonaws.com/blocgoals/',
       method: 'POST',
       fields : {
         key: $scope.file.name, 
         AWSAccessKeyId: 'AKIAIPYNFIL4MZZBPPWQ',
-        acl: 'public-read', // sets the access to the uploaded file in the bucket: private or public
-        policy: $scope.policy, // base64-encoded json policy (see article below)
-        signature: '', //$scope.signature, // base64-encoded signature based on policy string (see article below)
+        acl: 'public-read',
+        policy: $scope.policy,
+        signature: 'wSNCy1Y9qluj0XVp2e4LILI+AvU=',
         "Content-Type": $scope.file.type !== '' ? $scope.file.type : 'application/octet-stream', 
         filename: $scope.file.name
       },
       file: $scope.file,
       fileFormDataName: 'file'
-    }).then(function(data, status, headers, config){
-      debugger;
+    }).then(function(data){
+      var key = data.config.fields.key;
+      console.log('uploaded ' + key);
     });
+
+    $scope.newGoal.image_url = 'https://s3.amazonaws.com/blocgoals/' + $scope.file.name;
     baseGoals.post($scope.newGoal);
     $scope.newGoal = {};
     $scope.newGoal.steps = [{}];
