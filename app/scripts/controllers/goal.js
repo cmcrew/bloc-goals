@@ -78,22 +78,19 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
     $scope.newGoal.steps[newStepNo].due_date = new Date();
   };
 
-  $scope.policy = {
 
-  };
-
-  $scope.policy = 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImFuZ3VsYXItZmlsZS11cGxvYWQifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGtleSIsICIiXSwKICAgIHsiYWNsIjogInByaXZhdGUifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGZpbGVuYW1lIiwgIiJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDUyNDI4ODAwMF0KICBdCn0=';
+  $scope.policy = 'ewogICJleHBpcmF0aW9uIjogIjIwMjAtMDEtMDFUMDA6MDA6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImJsb2Nnb2FscyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgIiJdLAogICAgeyJhY2wiOiAicHVibGljLXJlYWQifSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJENvbnRlbnQtVHlwZSIsICIiXSwKICAgIFsic3RhcnRzLXdpdGgiLCAiJGZpbGVuYW1lIiwgIiJdLAogICAgWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsIDAsIDUyNDI4ODAwMF0KICBdCn0=';
 
   $scope.addGoal = function() {
     Upload.upload({
-      url: 'https://s3.amazonaws.com/blocgoals/',
+      url: 'https://s3-us-west-1.amazonaws.com/blocgoals/', //https://s3.amazonaws.com/blocgoals/',
       method: 'POST',
       fields : {
         key: $scope.file.name, 
-        AWSAccessKeyId: 'AKIAIPYNFIL4MZZBPPWQ',
+        AWSAccessKeyId: 'AKIAI57CPD6KZUDVWIDQ',
         acl: 'public-read',
         policy: $scope.policy,
-        signature: 'wSNCy1Y9qluj0XVp2e4LILI+AvU=',
+        signature: 'IuUO37JUsw+HVvayHm1IpflYJaw=',
         "Content-Type": $scope.file.type !== '' ? $scope.file.type : 'application/octet-stream', 
         filename: $scope.file.name
       },
@@ -104,7 +101,7 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
       console.log('uploaded ' + key);
     });
 
-    $scope.newGoal.image_url = 'https://s3.amazonaws.com/blocgoals/' + $scope.file.name;
+    $scope.newGoal.image_url = 'https://s3-us-west-1.amazonaws.com/blocgoals/' + $scope.file.name;
     baseGoals.post($scope.newGoal);
     $scope.newGoal = {};
     $scope.newGoal.steps = [{}];
