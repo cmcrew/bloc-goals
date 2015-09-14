@@ -11,7 +11,7 @@ angular.module('blocGoalsAppApp').controller('GoalCtrl', function($scope, Restan
   window.restangular = Restangular;
   window.scope = $scope;
 
-  Restangular.setBaseUrl('http://127.0.0.1:3000');
+  Restangular.setBaseUrl('http://45.55.185.19:3000');
   $scope.goal_id = $routeParams.goal_id;
   
   $scope.goal = Restangular.one("goals", $scope.goal_id).get().then(function(goal){
